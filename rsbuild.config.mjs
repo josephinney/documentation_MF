@@ -3,6 +3,9 @@ import { pluginReact } from '@rsbuild/plugin-react';
 import {pluginModuleFederation} from '@module-federation/rsbuild-plugin'
 
 export default defineConfig({
+
+  mode: 'production',
+
   plugins: [
     pluginReact(),
   
@@ -16,7 +19,12 @@ export default defineConfig({
   
   ],
 
+  output: {
+    assetPrefix: process.env.ASSET_PREFIX || '/',
+    filenameHash: true,
+  },
+
   server: {
-    port: 3005
+    port: 3005,
   }
 });
